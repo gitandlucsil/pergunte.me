@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpService } from 'src/app/service/http.service';
 import { AuthService } from 'src/app/service/auth.service';
-import { Usuario, Post } from '../model/model';
+import { Usuario, Pergunta } from '../model/model';
 
 const WS_LISTA = 'http://localhost:3000/post/listar'
 const WS_SALVAR = 'http://localhost:3000/post/salvar'
@@ -14,9 +14,9 @@ const WS_SALVAR = 'http://localhost:3000/post/salvar'
 export class TimelineComponent implements OnInit {
 
   usuario : Usuario
-  posts : Post[]
+  perguntas : Pergunta[]
   
-  post : Post = new Post()
+  pergunta : Pergunta = new Pergunta()
 
   constructor(public auth : AuthService, private http : HttpService) { }
 
@@ -27,14 +27,14 @@ export class TimelineComponent implements OnInit {
 
   listar(){
     this.http.get(WS_LISTA + "?usuario=" + this.usuario._id, (ret) => {
-      this.posts = ret
+      this.perguntas = ret
     })
   }
 
   salvar(){
-    this.post.usuario = this.usuario
-    this.http.post(WS_SALVAR, this.post, () =>{
-      this.post = new Post()
+    this.pergunta.destinatario = this.usuario
+    this.http.post(WS_SALVAR, this.pergunta, () =>{
+      this.pergunta = new Pergunta()
       this.listar()
     })
   }

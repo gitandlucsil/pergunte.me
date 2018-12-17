@@ -23,6 +23,12 @@ export class LoginComponent implements OnInit {
   ngOnInit() {
   }
   entrar(){
+    if(this.usuario.nome == null){
+      alert('Informar nome do usuário!')
+    }
+    if(this.usuario.senha == null){
+      alert('Informar a senha!')
+    }
     this.usuario.senha = Md5.hashStr(this.usuario.senha) as string
     this.http.post(WS_LOGIN, this.usuario).subscribe((ret) => {
       if (ret != null){
