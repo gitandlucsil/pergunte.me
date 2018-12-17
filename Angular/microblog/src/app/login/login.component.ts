@@ -23,7 +23,7 @@ export class LoginComponent implements OnInit {
   ngOnInit() {
   }
   entrar(){
-    if(this.usuario.nome == null){
+    if(this.usuario.login == null){
       alert('Informar nome do usuário!')
     }
     if(this.usuario.senha == null){

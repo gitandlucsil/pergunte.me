@@ -26,6 +26,11 @@
                         <small class="red-text" *ngIf="nome.invalid && nome.touched">Campo obrigatório</small>
                     </div>
                     <div class="input-field col s12">
+                        <input type="text" name="email" id="email" required [(ngModel)]="usuario.email" #nome="ngModel"/>
+                        <label for="nome">Email</label>
+                        <small class="red-text" *ngIf="email.invalid && email.touched">Campo obrigatório</small>
+                    </div>
+                    <div class="input-field col s12">
                         <input type="text" name="bio" id="bio" required [(ngModel)]="usuario.bio" #bio="ngModel"/>
                         <label for="bio">Bio</label>
                         <small class="red-text" *ngIf="bio.invalid && bio.touched">Campo obrigatório</small>
@@ -39,7 +44,7 @@
                 </div>
                 <div class="col s6">
                     <button class="btn btn-large waves-effect waves-light grey lighten-3 grey-text text-darken-1" 
-                        style="width: 100%">Cancelar</button>
+                        style="width: 100%" (click)="cancelar()">Cancelar</button>
                 </div>
             </div>
         </div>

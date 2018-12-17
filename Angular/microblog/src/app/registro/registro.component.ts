@@ -27,4 +27,8 @@ export class RegistroComponent implements OnInit {
     })
   }
 
+  cancelar(){
+    this.router.navigateByUrl('/login')
+  }
+
 }
