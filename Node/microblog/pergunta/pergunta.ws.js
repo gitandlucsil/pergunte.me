@@ -1,4 +1,4 @@
-const dao = require('./post.dao')
+const dao = require('./pergunta.dao')
 
 module.exports = (app) => {
 
