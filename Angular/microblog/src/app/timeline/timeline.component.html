@@ -1,0 +1,33 @@
+<div class="container" style="margin-top: 20px;">
+  <div class="row">
+      <div class="col s3">
+          <div class="col s12 col_profile">
+              <h5>{{usuario.nome}}</h5>
+              <p>
+                  {{usuario.bio}}
+              </p>
+          </div>
+          <form class="col s12">
+              <div class="input-field">
+                  <textarea name="post" id="post" class="materialize-textarea" [(ngModel)]="post.conteudo"></textarea>
+                  <label for="post">Escreva alguma coisa</label>
+              </div>
+              <div class="input-field">
+                  <button class="btn waves-effect waves-light col s12 grey darken-3" (click) = "salvar()">Enviar</button>
+              </div>
+          </form>
+      </div>
+      
+      <ul class="col s7 offset-s1 list_posts">
+          <li class="item_post" *ngFor="let p of posts">
+              <small>
+                  Em {{p.data | date: 'dd/MM/yyyy'}} às
+                  {{p.data | date: 'HH:mm'}}
+              </small>
+              <p>
+                  {{p.conteudo}}               
+              </p>
+          </li>
+      </ul>
+  </div>
+</div>

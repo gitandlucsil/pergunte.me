@@ -1,0 +1,30 @@
+.list_posts {
+    padding-top: 10px; 
+    padding-bottom: 10px; 
+    border: 1px solid #e0e0e0; 
+    border-radius: 10px; 
+    overflow-y: auto; 
+    background-color: #fff
+}
+
+.item_post {
+    padding : 10px; 
+    border-bottom: 1px solid #e0e0e0
+}
+
+.item_post:last-child {
+    border-bottom: none
+}
+
+.item_post small {
+    color: #999999;
+}
+
+.item_post p{
+    margin-top: 10px;
+    color: #666666
+}
+
+.col_profile {
+    color: #666666
+}
