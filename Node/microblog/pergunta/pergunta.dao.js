@@ -5,7 +5,7 @@ const Pergunta = require('./pergunta.model');
 const Usuario = require('../usuario/usuario.model');
 const mongoose = require('mongoose');
 
-exports.salvar = (ppergunta, fnCallback) => {
+exports.salvar = (pergunta, fnCallback) => {
     db.connect();
 
     let p = new Pergunta(pergunta);

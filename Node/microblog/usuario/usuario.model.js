@@ -6,8 +6,8 @@ var schemaUsuario = new Schema({
     login : String,
     senha : String,
     nome : String,
-    bio : String,
     email: String,
+    bio : String,
     foto: String
 });
 

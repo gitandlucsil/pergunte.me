@@ -4,23 +4,26 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes, NavigationStart, Router } from "@angular/router";
 import { FormsModule } from "@angular/forms";
 import { HttpClientModule } from "@angular/common/http"
-
+import { TimeLineModule, TimelineComponent } from "./timeline/timeline.component";
 import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
 import { HomeComponent } from './home/home.component';
 import { RegistroComponent } from './registro/registro.component';
-import { TimelineComponent } from './timeline/timeline.component';
 import { AuthService } from './service/auth.service';
 import { HttpService } from './service/http.service';
+import { InboxComponent } from './inbox/inbox.component';
+import { PerfilComponent } from './perfil/perfil.component';
+import { PerguntaComponent } from './pergunta/pergunta.component';
 
 const rotas : Routes = [
     {path: 'login', component: LoginComponent},
     {path: 'registro', component: RegistroComponent},
     {path: 'home', component: HomeComponent, children : [
-      {path: 'timeline', component: TimelineComponent},
-      {path: '', pathMatch: 'full', redirectTo: 'timeline'}
+      {path: 'inbox', component: InboxComponent},
+      {path: '', pathMatch: 'full', redirectTo: 'inbox'}
     ]},
-    {path: '', pathMatch: 'full', redirectTo: '/login'}
+    {path: '', pathMatch: 'full', redirectTo: '/login'},
+    {path: 'timeline', component: TimelineComponent}
 ]
 
 @NgModule({
@@ -29,7 +32,10 @@ const rotas : Routes = [
     LoginComponent,
     HomeComponent,
     RegistroComponent,
-    TimelineComponent
+    TimelineComponent,
+    InboxComponent,
+    PerfilComponent,
+    PerguntaComponent
   ],
   imports: [
     BrowserModule,

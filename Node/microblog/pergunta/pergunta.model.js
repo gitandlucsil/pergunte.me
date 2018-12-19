@@ -19,4 +19,4 @@ var schemaPost = new Schema({
 
 });
 
-module.exports = mongoose.model("Post", schemaPost);
+module.exports = mongoose.model("Pergunta", schemaPost);

@@ -5,6 +5,7 @@ import { Usuario, Pergunta } from '../model/model';
 
 const WS_LISTA = 'http://localhost:3000/post/listar'
 const WS_SALVAR = 'http://localhost:3000/post/salvar'
+const WS_INBOX = 'http://localhost:3000/inbox'
 
 @Component({
   selector: 'app-timeline',
@@ -26,7 +27,7 @@ export class TimelineComponent implements OnInit {
   }
 
   listar(){
-    this.http.get(WS_LISTA + "?usuario=" + this.usuario._id, (ret) => {
+    this.http.get(WS_INBOX + "?usuario=" + this.usuario._id, (ret) => {
       this.perguntas = ret
     })
   }

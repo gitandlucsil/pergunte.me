@@ -21,10 +21,12 @@ module.exports = (app) => {
 
     app.route("/usuario/salvar").post( (req, resp) => {
         dao.salvar(req.body, () => {
-            let img = req.body.imagem.split(';base64,').pop()
+            console.log(req.body)
+            /*let img = req.body.imagem.split(';base64,').pop()
             fs.writeFile('./uploads/imagem.png',img,{encondingg : 'base64'}, (e) => {
-                res.end()
-            })
+                resp.end()
+            })*/
+            resp.end()
         })
     })
 

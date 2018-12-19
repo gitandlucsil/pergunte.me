@@ -14,6 +14,7 @@ const WS_REGISTRO = 'http://localhost:3000/usuario/salvar'
 export class RegistroComponent implements OnInit {
 
   usuario : Usuario = new Usuario()
+  public conteudoImg
 
   constructor(private http : HttpService, private router : Router) { }
 
@@ -30,5 +31,15 @@ export class RegistroComponent implements OnInit {
   cancelar(){
     this.router.navigateByUrl('/login')
   }
+
+  selecionar($event){
+    let f = $event.target.files[0]
+    let fr = new FileReader()
+    fr.onloadend = (e) => {
+      this.conteudoImg = fr.result
+    }
+    fr.readAsDataURL(f)
+  }
+
 
 }
