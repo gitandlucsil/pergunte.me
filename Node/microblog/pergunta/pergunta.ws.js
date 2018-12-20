@@ -8,8 +8,8 @@ module.exports = (app) => {
         })
     })
 
-    app.route("/pergunta/listar").get( (req, resp) => {
-        dao.listar(req.query.usuario, (retorno) => {
+    app.route("/pergunta/listar_respondidas_usuario").get( (req, resp) => {
+        dao.listarPerguntaRespondidaUsuario(req.query.usuario, (retorno) => {
             resp.json(retorno)
         })
     })

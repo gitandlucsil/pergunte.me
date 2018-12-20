@@ -17,9 +17,9 @@ exports.salvar = (pergunta, fnCallback) => {
     });
 }
 
-exports.listar = (usuario, fnCallback) => {
+exports.listarPerguntaRespondidaUsuario = (usuario, fnCallback) => {
     db.connect()
-    let q = Pergunta.find({ usuario : usuario})
+    let q = Pergunta.find({ destinatario : usuario}).where("resposta").ne("")
     q.sort('-data')
     q.exec((e, ret) => {
         db.disconnect()

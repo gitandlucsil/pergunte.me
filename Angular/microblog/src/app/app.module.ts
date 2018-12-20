@@ -4,7 +4,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes, NavigationStart, Router } from "@angular/router";
 import { FormsModule } from "@angular/forms";
 import { HttpClientModule } from "@angular/common/http"
-import { TimeLineModule, TimelineComponent } from "./timeline/timeline.component";
+import { TimelineComponent } from "./timeline/timeline.component";
 import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
 import { HomeComponent } from './home/home.component';
@@ -23,7 +23,7 @@ const rotas : Routes = [
       {path: '', pathMatch: 'full', redirectTo: 'inbox'}
     ]},
     {path: '', pathMatch: 'full', redirectTo: '/login'},
-    {path: 'timeline', component: TimelineComponent}
+    {path: 'profile', component: TimelineComponent}
 ]
 
 @NgModule({
