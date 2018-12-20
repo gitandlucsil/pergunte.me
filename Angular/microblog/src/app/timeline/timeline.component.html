@@ -8,11 +8,11 @@
                 <p style="text-align: center">{{usuario.bio}}</p>
             </div>
         </div>
-        <ul class="col s7 offset-s1 list_posts" >
-            <li class="item_post" *ngFor="let p of perguntas">
+        <ul class="col s7 offset-s1 list_perguntas" >
+            <li class="item_pergunta" *ngFor="let p of perguntas">
                     <div class="valign z-depth-1 form_login">
                 <small>
-                    Em {{p.dataPergunta | date: 'dd/MM/yyyy'}}
+                    Em {{p.dataPergunta | date: 'dd/MM/yyyy'}}, {{p.remetente}} perguntou
                 </small>
                 <p>
                     <font color="blue">{{p.descricao}}</font>

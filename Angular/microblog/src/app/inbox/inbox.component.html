@@ -1,22 +1,22 @@
 <div class="container" style="margin-top: 20px;">
   <div class="row">
-    <ul class="col s12 offset-s2 list_posts">
-        <li class="item_post" *ngFor="let p of perguntas">
+    <ul class="col s12 offset-s2 list_perguntas">
+        <li class="item_pergunta" *ngFor="let p of perguntas">
         <small>
-            Em {{p.data | date: 'dd/MM/yyyy'}} às
-            {{p.data | date: 'HH:mm'}},
-            @{{p.remetente.login}} perguntou:
+            Em {{p.dataPergunta | date: 'dd/MM/yyyy'}} às
+            {{p.dataPergunta | date: 'HH:mm'}},
+            @{{p.remetente}} perguntou:
         </small>
         <p>
           {{p.descricao}}
         </p>
         <div class="row" style="text-align : right">
           <div class="col s2">
-            <button class="btn  waves-effect waves-light grey darken-3" style="width: 100%" [disabled]="formRegistro.invalid"
-              (click)="salvar()">Salvar</button>
+            <button class="btn  waves-effect waves-light grey darken-3" style="width: 100%" 
+              (click)="responder()">Responder</button>
           </div>
           <div class="col s2">
-            <button class="btn waves-effect waves-light grey lighten-3 grey-text text-darken-1" style="width: 100%" (click)="cancelar()">Cancelar</button>
+            <button class="btn waves-effect waves-light grey lighten-3 grey-text text-darken-1" style="width: 100%" (click)="ignorar()">Ignorar</button>
           </div>
         </div>
       </li>
