@@ -11,6 +11,7 @@ import { HomeComponent } from './home/home.component';
 import { RegistroComponent } from './registro/registro.component';
 import { AuthService } from './service/auth.service';
 import { HttpService } from './service/http.service';
+import { ResponderService } from './service/responder.service';
 import { InboxComponent } from './inbox/inbox.component';
 import { PerfilComponent } from './perfil/perfil.component';
 import { PerguntaComponent } from './pergunta/pergunta.component';
@@ -51,7 +52,8 @@ const rotas : Routes = [
   ],
   providers: [
     AuthService,
-    HttpService
+    HttpService,
+    ResponderService
   ],
   bootstrap: [AppComponent]
 })

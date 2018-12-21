@@ -2,9 +2,14 @@ import { Component, OnInit } from '@angular/core';
 import { HttpService } from 'src/app/service/http.service';
 import { AuthService } from 'src/app/service/auth.service';
 import { Usuario, Pergunta } from '../model/model';
+import { Router } from '@angular/router';
+import { HttpClient } from '@angular/common/http';
+import { ResponderComponent } from '../responder/responder.component';
+import { ResponderService } from '../service/responder.service';
 
 const WS_LISTA = 'http://localhost:3000/pergunta/listar_pendentes_usuario'
 const WS_IGNORAR = 'http://localhost:3000/pergunta/excluir/'
+const WS_RESPONDER = 'http://localhost:3000/pergunta/responder'
 
 @Component({
   selector: 'app-inbox',
@@ -16,7 +21,11 @@ export class InboxComponent implements OnInit {
   usuario: Usuario
   perguntas: Pergunta[]
 
-  constructor(public auth: AuthService, private http: HttpService) { }
+  constructor(private http: HttpService,
+    private http_client: HttpClient,
+    private auth: AuthService,
+    private router: Router,
+    private resp : ResponderService) { }
 
   ngOnInit() {
     this.usuario = this.auth.usuario
@@ -29,8 +38,9 @@ export class InboxComponent implements OnInit {
     })
   }
 
-  responder() {
-
+  responder(perg: Pergunta) {
+    this.resp.setPergunta(perg)
+    this.router.navigateByUrl('/responder')
   }
 
   ignorar(id: string) {
