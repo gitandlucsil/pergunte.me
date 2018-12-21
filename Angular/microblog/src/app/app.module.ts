@@ -14,6 +14,7 @@ import { HttpService } from './service/http.service';
 import { InboxComponent } from './inbox/inbox.component';
 import { PerfilComponent } from './perfil/perfil.component';
 import { PerguntaComponent } from './pergunta/pergunta.component';
+import { ResponderComponent } from './responder/responder.component';
 
 const rotas : Routes = [
     {path: 'login', component: LoginComponent},
@@ -23,7 +24,11 @@ const rotas : Routes = [
       {path: '', pathMatch: 'full', redirectTo: 'inbox'}
     ]},
     {path: '', pathMatch: 'full', redirectTo: '/login'},
-    {path: 'profile', component: TimelineComponent}
+    {path: 'profile', component: TimelineComponent},
+    {path: 'editarperfil', component: PerfilComponent},
+    {path: 'responder', component: ResponderComponent},
+    {path: 'perguntas', component: PerguntaComponent}
+
 ]
 
 @NgModule({
@@ -35,7 +40,8 @@ const rotas : Routes = [
     TimelineComponent,
     InboxComponent,
     PerfilComponent,
-    PerguntaComponent
+    PerguntaComponent,
+    ResponderComponent
   ],
   imports: [
     BrowserModule,
