@@ -4,6 +4,7 @@ import { AuthService } from 'src/app/service/auth.service';
 import { Usuario, Pergunta } from '../model/model';
 
 const WS_LISTA = 'http://localhost:3000/pergunta/listar_pendentes_usuario'
+const WS_IGNORAR = 'http://localhost:3000/pergunta/excluir/'
 
 @Component({
   selector: 'app-inbox',
@@ -12,28 +13,30 @@ const WS_LISTA = 'http://localhost:3000/pergunta/listar_pendentes_usuario'
 })
 export class InboxComponent implements OnInit {
 
-  usuario : Usuario
-  perguntas : Pergunta[]
+  usuario: Usuario
+  perguntas: Pergunta[]
 
-  constructor(public auth : AuthService, private http : HttpService) { }
+  constructor(public auth: AuthService, private http: HttpService) { }
 
   ngOnInit() {
     this.usuario = this.auth.usuario
     this.listar()
   }
 
-  listar(){
+  listar() {
     this.http.get(WS_LISTA + "?usuario=" + this.usuario._id, (ret) => {
       this.perguntas = ret
     })
   }
 
-  responder(){
+  responder() {
 
   }
 
-  ignorar(){
-
+  ignorar(id: string) {
+    this.http.get(WS_IGNORAR + id, (ret) => {
+      this.listar()
+    })
   }
 
 }

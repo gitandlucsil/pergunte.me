@@ -36,3 +36,11 @@ exports.listarPerguntaPendenteUsuario = (usuario, fnCallback) => {
         fnCallback(ret)
     })
 }
+
+exports.ignorarPerguntaNaoRespondida = (id, fnCallback) => {
+    db.connect()
+    Pergunta.findByIdAndDelete(id, (e, ret) => {
+        db.disconnect()
+        fnCallback()
+    })
+}

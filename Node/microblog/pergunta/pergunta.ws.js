@@ -22,6 +22,14 @@ module.exports = (app) => {
         })
     })
 
+    //Serviço para o usuario ignorar uma pergunta nao respondida
+    app.route('/pergunta/excluir/:id').get( (req, res) => {
+        let id = req.params.id
+        dao.ignorarPerguntaNaoRespondida(id, () => {
+            res.json({})
+        })
+    })
+
     app.route("/pergunta/salvar").post( (req, resp) => {
         dao.salvar(req.body, () => {
             resp.end()
