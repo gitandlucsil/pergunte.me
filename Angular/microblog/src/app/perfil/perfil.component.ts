@@ -3,6 +3,7 @@ import { Usuario } from '../model/model';
 import { HttpService } from '../service/http.service';
 import { AuthService } from '../service/auth.service';
 import { Router } from '@angular/router';
+import { Md5 } from "ts-md5";
 
 const WS_ATUALIZAR = 'http://localhost:3000/usuario/atualizar'
 
@@ -22,6 +23,7 @@ export class PerfilComponent implements OnInit {
   }
 
   atualizar(){
+    this.usuario.senha = Md5.hashStr(this.usuario.senha) as string
     this.http.post(WS_ATUALIZAR, this.usuario, () => {
       this.router.navigateByUrl('home/inbox')
     })
