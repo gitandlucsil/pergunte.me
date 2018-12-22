@@ -17,16 +17,13 @@ const WS_SALVAR = 'http://localhost:3000/pergunta/salvar/'
 export class PerguntaComponent implements OnInit {
 
   usuario : Usuario
-  pergunta_enviar : Pergunta
   perguntas : Pergunta[]
   usuarios :Usuario[]
-
   pergunta : Pergunta = new Pergunta()
   
 
   constructor(private http: HttpService,
-    private auth: AuthService,
-    private router: Router) { }
+    private auth: AuthService) { }
 
   ngOnInit() {
     this.usuario = this.auth.usuario
@@ -48,7 +45,13 @@ export class PerguntaComponent implements OnInit {
   }
 
   perguntar(){
-
+    this.pergunta.remetente = this.usuario
+    this.pergunta.dataPergunta = new Date()
+    this.http.post(WS_SALVAR, this.pergunta, () =>{
+      this.pergunta = new Pergunta()
+      this.listarUsuario()
+      this.listar()
+    })
   }
 
 

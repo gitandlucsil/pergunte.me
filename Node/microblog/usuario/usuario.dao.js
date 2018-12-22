@@ -3,9 +3,7 @@ const Usuario = require('./usuario.model');
 
 exports.salvar = (usuario, fnCallback) => {
     db.connect();
-
     let u = new Usuario(usuario);
-    
     u.save( (e, res) => {
         db.disconnect();
         fnCallback();

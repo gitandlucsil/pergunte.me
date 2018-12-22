@@ -5,6 +5,15 @@ const Pergunta = require('./pergunta.model');
 const Usuario = require('../usuario/usuario.model');
 const mongoose = require('mongoose');
 
+exports.salvar = (pergunta, fnCallback) => {
+    db.connect();
+    let u = new Pergunta(pergunta);
+    u.save( (e, res) => {
+        db.disconnect();
+        fnCallback();
+    });
+}
+
 exports.atualizar = (pergunta, fnCallback) => {
     db.connect();
     pergunta.dataResposta = new Date()

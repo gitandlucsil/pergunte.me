@@ -4,7 +4,7 @@
     <div class="col s3">
       <form class="col s12">
           <label for="perg">Usuario</label>
-          <select class="browser-default" [(ngModel)]="pergunta.remetente" name="remetente">
+          <select class="browser-default" [(ngModel)]="pergunta.destinatario" name="remetente">
               <option *ngFor="let u of usuarios" value="{{u._id}}">
                   {{u.login}}
               </option>

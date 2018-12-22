@@ -45,4 +45,11 @@ module.exports = (app) => {
         })
     })
 
+    //Servico utilizado para salvar uma nova pergunta
+    app.route("/pergunta/salvar").post( (req, resp) => {
+        dao.salvar(req.body, () => {
+            console.log(req.body)
+            resp.end()
+        })
+    })
 }
