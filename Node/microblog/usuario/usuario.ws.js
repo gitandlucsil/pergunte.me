@@ -36,6 +36,14 @@ module.exports = (app) => {
         })
     })
 
+    app.route("/usuario/pegar_logado").get( (req, resp) => {
+        dao.selectUsuario(req.query.usuario, (retorno) => {
+            console.log(retorno)
+            resp.json(retorno)
+        })
+    })
+
+
     app.route("/usuario/atualizar").post((req,resp) => {
         console.log(req.body)
         dao.atualizar(req.body, () => {

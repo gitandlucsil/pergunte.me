@@ -26,6 +26,14 @@ exports.consultar = (usuario, fnCallback) => {
     });
 }
 
+exports.selectUsuario = (usuario, fnCallback) => {
+    db.connect();
+    Usuario.findById(usuario.id, (e, res) => {
+        db.disconnect()
+        fnCallback(res)
+    })
+}
+
 exports.listarUsuarios = (fnCallback) => {
     db.connect()
     Usuario.find( (e, ret) => {

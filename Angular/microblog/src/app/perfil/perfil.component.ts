@@ -25,7 +25,7 @@ export class PerfilComponent implements OnInit {
   atualizar(){
     this.usuario.senha = Md5.hashStr(this.usuario.senha) as string
     this.http.post(WS_ATUALIZAR, this.usuario, () => {
-      this.router.navigateByUrl('home/inbox')
+      this.router.navigateByUrl('/profile')
     })
   }
 

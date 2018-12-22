@@ -4,6 +4,7 @@ import { AuthService } from 'src/app/service/auth.service';
 import { Usuario, Pergunta } from '../model/model';
 
 const WS_LISTA = 'http://localhost:3000/pergunta/listar_respondidas_usuario'
+const WS_PEGAR_USUARIO = 'http://localhost:3000/usuario/pegar_logado'
 const WS_SALVAR = 'http://localhost:3000/pergunta/salvar'
 
 @Component({
@@ -13,6 +14,7 @@ const WS_SALVAR = 'http://localhost:3000/pergunta/salvar'
 })
 export class TimelineComponent implements OnInit {
 
+  usuario_logado : Usuario
   usuario : Usuario
   perguntas : Pergunta[]
   
@@ -23,6 +25,12 @@ export class TimelineComponent implements OnInit {
   ngOnInit() {
     this.usuario = this.auth.usuario
     this.listar()
+  }
+
+  pergarUsuarioLogado(){
+    this.http.get(WS_PEGAR_USUARIO + "?usuario=" + this.usuario_logado._id, (ret) => {
+      this.usuario = ret
+    })
   }
 
   listar(){
