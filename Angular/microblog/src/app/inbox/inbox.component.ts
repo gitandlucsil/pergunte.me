@@ -9,7 +9,7 @@ import { ResponderService } from '../service/responder.service';
 
 const WS_LISTA = 'http://localhost:3000/pergunta/listar_pendentes_usuario'
 const WS_IGNORAR = 'http://localhost:3000/pergunta/excluir/'
-const WS_RESPONDER = 'http://localhost:3000/pergunta/responder'
+
 
 @Component({
   selector: 'app-inbox',
@@ -22,7 +22,6 @@ export class InboxComponent implements OnInit {
   perguntas: Pergunta[]
 
   constructor(private http: HttpService,
-    private http_client: HttpClient,
     private auth: AuthService,
     private router: Router,
     private resp : ResponderService) { }

@@ -6,7 +6,7 @@
         <small>
           Em {{pergunta.dataPergunta | date: 'dd/MM/yyyy'}} às
           {{pergunta.dataPergunta | date: 'HH:mm'}},
-          @{{pergunta.remetente}} perguntou:
+          @{{pergunta.remetente.nome}} perguntou:
       </small>
         <p>
           {{pergunta.descricao}}
@@ -14,12 +14,12 @@
       </div>
       <form class="col s12">
         <div class="input-field">
-          <textarea name="post" id="post" class="materialize-textarea" ></textarea>
-          <label for="post">Resposta</label>
+          <textarea name="resp" id="resp" class="materialize-textarea" [(ngModel)]="pergunta.resposta" #resposta="ngModel"></textarea>
+          <label for="resp">Resposta</label>
         </div>
         <div class="col s2">
           <button class="btn  waves-effect waves-light grey darken-3" style="width: 100%" 
-            (click)="responder(pergunta)">Enviar</button>
+            (click)="responder()">Enviar</button>
         </div>
         <div class="col s2">
           <button class="btn waves-effect waves-light grey lighten-3 grey-text text-darken-1" style="width: 100%" (click)="cancelar()">Cancelar</button>

@@ -5,6 +5,8 @@ import { Router } from '@angular/router';
 import { Pergunta } from '../model/model';
 import { ResponderService } from '../service/responder.service';
 
+const WS_RESPONDER = 'http://localhost:3000/pergunta/responder'
+
 @Component({
   selector: 'app-responder',
   templateUrl: './responder.component.html',
@@ -22,7 +24,6 @@ export class ResponderComponent implements OnInit {
 
   ngOnInit() {
     this.pergunta = this.resp.getPergunta()
-    alert(this.pergunta.descricao)
   }
 
   //Funcao utilizada para cancelar a resposta e retornar para a tela anterior
@@ -32,6 +33,8 @@ export class ResponderComponent implements OnInit {
 
   //Funcao utilizada para enviar uma resposta para uma determinada pergunta
   responder(){
-
+    this.http.post(WS_RESPONDER, this.pergunta, () => {
+      this.router.navigateByUrl('home/inbox')
+    })
   }
 }

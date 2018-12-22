@@ -22,6 +22,13 @@ module.exports = (app) => {
         })
     })
 
+       //Serviço para listar todas as perguntas feitas por um determinado usuario
+       app.route("/pergunta/listar_feitas_usuario").get( (req, resp) => {
+        dao.listarPerguntaFeitaUsuario(req.query.usuario, (retorno) => {
+           resp.json(retorno)
+        })
+    })
+
     //Serviço para o usuario ignorar uma pergunta nao respondida
     app.route('/pergunta/excluir/:id').get( (req, res) => {
         let id = req.params.id
@@ -30,8 +37,10 @@ module.exports = (app) => {
         })
     })
 
-    app.route("/pergunta/salvar").post( (req, resp) => {
-        dao.salvar(req.body, () => {
+    //Servico para o usuario enviar a resposta de uma pergunta
+    app.route("/pergunta/responder").post((req,resp) => {
+        console.log(req.body)
+        dao.atualizar(req.body, () => {
             resp.end()
         })
     })

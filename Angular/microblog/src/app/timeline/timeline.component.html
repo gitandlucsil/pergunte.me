@@ -12,7 +12,7 @@
             <li class="item_pergunta" *ngFor="let p of perguntas">
                     <div class="valign z-depth-1 form_login">
                 <small>
-                    Em {{p.dataPergunta | date: 'dd/MM/yyyy'}}, {{p.remetente}} perguntou
+                    Em {{p.dataPergunta | date: 'dd/MM/yyyy'}}, {{p.remetente.nome}} perguntou
                 </small>
                 <p>
                     <font color="blue">{{p.descricao}}</font>
