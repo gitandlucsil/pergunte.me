@@ -1,4 +1,65 @@
 <app-home></app-home>
-<p>
-  perfil works!
-</p>
+<div class="bg_novo_user">
+
+    <div class="valign-wrapper fullsize">
+
+        <div class="valign z-depth-1 form_cadastro">
+            <div class="row">
+                <div class="col s12" style="text-align : center">
+                    <h5>pergute.me | registro</h5>
+                </div>
+            </div>
+            <div class="row">
+                <form class="col s12" #formRegistro="ngForm">
+                    <div class="col s12" style="text-align : center">
+                        <div class="col s12" style="text-align : center">
+                            Imagem de perfil
+                        </div>
+                        <br />
+                        <input type="file" name="uploadfile" id="img" style="display:none;" #uploadfile (change)="selecionar($event)" />
+                        <label for="img">Carregar imagem</label>
+                        <br />
+                        <img *ngIf="conteudoImg" [src]='conteudoImg' height="100" width="200" />
+                        <br />
+                    </div>
+                    <div class="input-field col s12">
+                        <input type="text" name="login" id="login" required [(ngModel)]="usuario.login" #login="ngModel" />
+                        <label for="login">Login</label>
+                        <small class="red-text" *ngIf="login.invalid && login.touched">Campo obrigatório</small>
+                    </div>
+                    <div class="input-field col s12">
+                        <input type="password" name="senha" id="senha" required [(ngModel)]="usuario.senha" #senha="ngModel" />
+                        <label for="senha">Senha</label>
+                        <small class="red-text" *ngIf="senha.invalid && senha.touched">Campo obrigatório</small>
+                    </div>
+                    <div class="input-field col s12">
+                        <input type="text" name="nome" id="nome" required [(ngModel)]="usuario.nome" #nome="ngModel" />
+                        <label for="nome">Nome</label>
+                        <small class="red-text" *ngIf="nome.invalid && nome.touched">Campo obrigatório</small>
+                    </div>
+                    <div class="input-field col s12">
+                        <input type="text" name="email" id="email" required [(ngModel)]="usuario.email" #email="ngModel" />
+                        <label for="email">Email</label>
+                        <small class="red-text" *ngIf="email.invalid && email.touched">Campo obrigatório</small>
+                    </div>
+                    <div class="input-field col s12">
+                        <input type="text" name="bio" id="bio" required [(ngModel)]="usuario.bio" #bio="ngModel" />
+                        <label for="bio">Escreva algo sobre você</label>
+                        <small class="red-text" *ngIf="bio.invalid && bio.touched">Campo obrigatório</small>
+                    </div>
+                </form>
+            </div>
+            <div class="row">
+                <div class="col s6">
+                    <button class="btn btn-large waves-effect waves-light grey darken-3" style="width: 100%" [disabled]="formRegistro.invalid"
+                        (click)="atualizar()">Atualizar</button>
+                </div>
+                <div class="col s6">
+                    <button class="btn btn-large waves-effect waves-light grey lighten-3 grey-text text-darken-1" style="width: 100%" (click)="cancelar()">Cancelar</button>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+</div>

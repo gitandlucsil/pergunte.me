@@ -36,6 +36,13 @@ module.exports = (app) => {
         })
     })
 
+    app.route("/usuario/atualizar").post((req,resp) => {
+        console.log(req.body)
+        dao.atualizar(req.body, () => {
+            resp.end()
+        })
+    })
+
 
     /*app.post('/upload', multer({storage : configMulter}).single('arquivo'),(req, res) => {
         let obj = JSON.parse(req.body.dados)

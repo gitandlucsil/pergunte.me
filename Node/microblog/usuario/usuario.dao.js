@@ -12,7 +12,6 @@ exports.salvar = (usuario, fnCallback) => {
 
 exports.verificar = (id, fnCallback) => {
     db.connect();
-
     Usuario.findById(id, (e, ret) => {
         fnCallback(ret != null)
     })
@@ -32,5 +31,13 @@ exports.listarUsuarios = (fnCallback) => {
     Usuario.find( (e, ret) => {
         db.disconnect()
         fnCallback(ret)
+    })
+}
+
+exports.atualizar = (usuario, fnCallback) => {
+    db.connect();
+    Usuario.findByIdAndUpdate(usuario._id, usuario, (e, ret) => {
+        db.disconnect()
+        fnCallback()
     })
 }
