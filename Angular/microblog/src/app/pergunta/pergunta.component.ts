@@ -5,7 +5,7 @@ import { AuthService } from '../service/auth.service';
 import { Router } from '@angular/router';
 
 const WS_LISTA = 'http://localhost:3000/pergunta/listar_feitas_usuario'
-const WS_GET_DESTINATARIO = 'http://localhost:3000/pergunta/get_destinatario'
+const WS_LISTAR_USUARIO = 'http://localhost:3000/usuario/listar'
 const WS_SALVAR = 'http://localhost:3000/pergunta/salvar/'
 
 @Component({
@@ -17,10 +17,12 @@ const WS_SALVAR = 'http://localhost:3000/pergunta/salvar/'
 export class PerguntaComponent implements OnInit {
 
   usuario : Usuario
-  destinatarios : Usuario[]
   pergunta_enviar : Pergunta
-  perguntas: Pergunta[]
+  perguntas : Pergunta[]
+  usuarios :Usuario[]
 
+  pergunta : Pergunta = new Pergunta()
+  
 
   constructor(private http: HttpService,
     private auth: AuthService,
@@ -28,13 +30,25 @@ export class PerguntaComponent implements OnInit {
 
   ngOnInit() {
     this.usuario = this.auth.usuario
+    this.listarUsuario()
     this.listar()
+  }
+
+  listarUsuario(){
+    this.http.get(WS_LISTAR_USUARIO, (ret) => {
+      this.usuarios = ret
+
+    })
   }
 
   listar() {
     this.http.get(WS_LISTA + "?usuario=" + this.usuario._id, (ret) => {
       this.perguntas = ret
     })
+  }
+
+  perguntar(){
+
   }
 
 

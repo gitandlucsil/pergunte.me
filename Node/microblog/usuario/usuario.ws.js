@@ -30,6 +30,13 @@ module.exports = (app) => {
         })
     })
 
+    app.route("/usuario/listar").get( (req, resp) => {
+        dao.listarUsuarios((retorno) => {
+           resp.json(retorno)
+        })
+    })
+
+
     /*app.post('/upload', multer({storage : configMulter}).single('arquivo'),(req, res) => {
         let obj = JSON.parse(req.body.dados)
         console.log(obj)

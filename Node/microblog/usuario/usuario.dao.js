@@ -22,11 +22,17 @@ exports.verificar = (id, fnCallback) => {
 
 exports.consultar = (usuario, fnCallback) => {
     db.connect();
-
     let u = new Usuario(usuario);
-
     Usuario.findOne( { login : u.login, senha : u.senha }, (e, res) => {
         db.disconnect();
         fnCallback(res);
     });
+}
+
+exports.listarUsuarios = (fnCallback) => {
+    db.connect()
+    Usuario.find( (e, ret) => {
+        db.disconnect()
+        fnCallback(ret)
+    })
 }

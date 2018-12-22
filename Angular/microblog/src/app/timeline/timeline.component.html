@@ -3,7 +3,7 @@
     <div class="row">
         <div class="col s3">
             <div class="col s12 col_profile">
-                <p style="text-align: center">@{{usuario.nome}}</p>
+                <p style="text-align: center">@{{usuario.login}}</p>
                 <p style="text-align: center">{{usuario.nome}}</p>
                 <p style="text-align: center">{{usuario.bio}}</p>
             </div>
@@ -12,7 +12,7 @@
             <li class="item_pergunta" *ngFor="let p of perguntas">
                     <div class="valign z-depth-1 form_login">
                 <small>
-                    Em {{p.dataPergunta | date: 'dd/MM/yyyy'}}, {{p.remetente.nome}} perguntou
+                    Em {{p.dataPergunta | date: 'dd/MM/yyyy'}}, {{p.remetente.login}} perguntou
                 </small>
                 <p>
                     <font color="blue">{{p.descricao}}</font>
