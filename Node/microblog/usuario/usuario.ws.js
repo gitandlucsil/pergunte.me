@@ -6,37 +6,41 @@ module.exports = (app) => {
 
     const configMulter = multer.diskStorage(
         {
-            destination : (req, res, cb) => {
+            destination: (req, res, cb) => {
                 cb(null, './uploads')
-            }, filename : (req, file, cb) => {
-                cb(null,file.originalname)
+            }, filename: (req, file, cb) => {
+                cb(null, file.originalname)
             }
         }
     )
-    app.route("/usuario/login").post( (req, resp) => {
+    app.route("/usuario/login").post((req, resp) => {
         dao.consultar(req.body, (result) => {
             resp.json(result)
         })
     })
 
-    app.route("/usuario/salvar").post( (req, resp) => {
+    app.route("/usuario/salvar").post((req, resp) => {
         dao.salvar(req.body, () => {
             console.log(req.body)
-            /*let img = req.body.imagem.split(';base64,').pop()
-            fs.writeFile('./uploads/imagem.png',img,{encondingg : 'base64'}, (e) => {
-                resp.end()
-            })*/
             resp.end()
         })
     })
 
-    app.route("/usuario/listar").get( (req, resp) => {
-        dao.listarUsuarios((retorno) => {
-           resp.json(retorno)
+    app.post('/usuario/upload64',multer().none(), (req, resp) => {
+        console.log(req.body.imagem)
+        let img = req.body.imagem.split(';base64,').pop()
+        fs.writeFile('./uploads/' + 'A' + '.png', img, { encondingg: 'base64' }, (e) => {
+            resp.end()
         })
     })
 
-    app.route("/usuario/pegar_logado").get( (req, resp) => {
+    app.route("/usuario/listar").get((req, resp) => {
+        dao.listarUsuarios((retorno) => {
+            resp.json(retorno)
+        })
+    })
+
+    app.route("/usuario/pegar_logado").get((req, resp) => {
         dao.selectUsuario(req.query.usuario, (retorno) => {
             console.log(retorno)
             resp.json(retorno)
@@ -44,7 +48,7 @@ module.exports = (app) => {
     })
 
 
-    app.route("/usuario/atualizar").post((req,resp) => {
+    app.route("/usuario/atualizar").post((req, resp) => {
         console.log(req.body)
         dao.atualizar(req.body, () => {
             resp.end()

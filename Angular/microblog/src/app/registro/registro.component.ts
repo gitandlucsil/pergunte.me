@@ -3,8 +3,10 @@ import { Usuario } from '../model/model';
 import { HttpService } from '../service/http.service';
 import { Md5 } from "ts-md5";
 import { Router } from '@angular/router';
+import { HttpClient } from '@angular/common/http';
 
 const WS_REGISTRO = 'http://localhost:3000/usuario/salvar'
+const WS_UPLOAD_64 = 'http://localhost:3000/usuario/upload64'
 
 @Component({
   selector: 'app-registro',
@@ -16,13 +18,24 @@ export class RegistroComponent implements OnInit {
   usuario : Usuario = new Usuario()
   public conteudoImg
 
-  constructor(private http : HttpService, private router : Router) { }
+  constructor(private http : HttpService, private router : Router, private httpcli : HttpClient) { }
 
   ngOnInit() {
   }
 
   salvar(){
     this.usuario.senha = Md5.hashStr(this.usuario.senha) as string
+    let fd = new FormData()
+    alert(this.conteudoImg)
+    fd.append('imagem',this.conteudoImg)
+    alert(fd)
+    this.httpcli.post(WS_UPLOAD_64, fd).subscribe(
+      () => {
+        alert('Upload realizado com sucesso')
+      },
+      (e) => {
+        alert('Erro no upload ' + e.message)
+      })
     this.http.post(WS_REGISTRO, this.usuario, () => {
       this.router.navigateByUrl('/login')
     })
