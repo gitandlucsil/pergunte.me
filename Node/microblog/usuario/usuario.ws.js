@@ -4,6 +4,9 @@ const fs = require('fs')
 
 module.exports = (app) => {
 
+    
+var nomeArq = ''
+
     const configMulter = multer.diskStorage(
         {
             destination: (req, res, cb) => {
@@ -21,15 +24,19 @@ module.exports = (app) => {
 
     app.route("/usuario/salvar").post((req, resp) => {
         dao.salvar(req.body, () => {
-            console.log(req.body)
+            console.log('Entrei no salvar')
+            //console.log(req.body)
+            nomeArq = req.body.login
+            //console.log(nomeArq)
             resp.end()
         })
     })
 
     app.post('/usuario/upload64',multer().none(), (req, resp) => {
-        console.log(req.body.imagem)
         let img = req.body.imagem.split(';base64,').pop()
-        fs.writeFile('./uploads/' + 'A' + '.png', img, { encondingg: 'base64' }, (e) => {
+        console.log('Entrei no upload64')
+        //console.log(nomeArq)
+        fs.writeFile('./uploads/' + nomeArq + '.png', img, { encondingg: 'base64' }, (e) => {
             resp.end()
         })
     })
@@ -54,20 +61,5 @@ module.exports = (app) => {
             resp.end()
         })
     })
-
-
-    /*app.post('/upload', multer({storage : configMulter}).single('arquivo'),(req, res) => {
-        let obj = JSON.parse(req.body.dados)
-        console.log(obj)
-        res.end()
-    })*/
-
-
-    /*app.post('/upload64',multer().none(), (req, res) => {
-        let img = req.body.imagem.split(';base64,').pop()
-        fs.writeFile('./uploads/imagem.png',img,{encondingg : 'base64'}, (e) => {
-            res.end()
-        })
-    })*/
 
 }

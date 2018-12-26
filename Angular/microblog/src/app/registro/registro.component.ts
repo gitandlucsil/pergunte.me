@@ -25,20 +25,20 @@ export class RegistroComponent implements OnInit {
 
   salvar(){
     this.usuario.senha = Md5.hashStr(this.usuario.senha) as string
+    this.usuario.foto = '../pergunte.me/Node/microblog/uploads/'+this.usuario.login+'.png'
     let fd = new FormData()
-    alert(this.conteudoImg)
     fd.append('imagem',this.conteudoImg)
-    alert(fd)
+    this.http.post(WS_REGISTRO, this.usuario, () => {
+    })
     this.httpcli.post(WS_UPLOAD_64, fd).subscribe(
       () => {
-        alert('Upload realizado com sucesso')
+        alert('Upload da imagem realizado com sucesso')
+        this.router.navigateByUrl('/login')
       },
       (e) => {
         alert('Erro no upload ' + e.message)
       })
-    this.http.post(WS_REGISTRO, this.usuario, () => {
-      this.router.navigateByUrl('/login')
-    })
+      
   }
 
   cancelar(){
