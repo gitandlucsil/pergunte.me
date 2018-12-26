@@ -25,9 +25,9 @@ var nomeArq = ''
     app.route("/usuario/salvar").post((req, resp) => {
         dao.salvar(req.body, () => {
             console.log('Entrei no salvar')
-            //console.log(req.body)
+            console.log(req.body)
             nomeArq = req.body.login
-            //console.log(nomeArq)
+            console.log(nomeArq)
             resp.end()
         })
     })
@@ -35,7 +35,7 @@ var nomeArq = ''
     app.post('/usuario/upload64',multer().none(), (req, resp) => {
         let img = req.body.imagem.split(';base64,').pop()
         console.log('Entrei no upload64')
-        //console.log(nomeArq)
+        console.log(nomeArq)
         fs.writeFile('./uploads/' + nomeArq + '.png', img, { encondingg: 'base64' }, (e) => {
             resp.end()
         })
