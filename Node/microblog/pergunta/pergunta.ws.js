@@ -39,7 +39,9 @@ module.exports = (app) => {
 
     //Servico para o usuario enviar a resposta de uma pergunta
     app.route("/pergunta/responder").post((req,resp) => {
-        console.log(req.body)
+        //console.log(req.body)
+        console.log(req.body.descricao)
+        console.log(req.body.resposta)
         dao.atualizar(req.body, () => {
             resp.end()
         })
@@ -48,7 +50,11 @@ module.exports = (app) => {
     //Servico utilizado para salvar uma nova pergunta
     app.route("/pergunta/salvar").post( (req, resp) => {
         dao.salvar(req.body, () => {
-            console.log(req.body)
+            //console.log(req.body)
+            console.log(req.body.descricao)
+            console.log(req.body.dataPergunta)
+            console.log(req.body.resposta)
+            console.log(req.body.dataResposta)
             resp.end()
         })
     })

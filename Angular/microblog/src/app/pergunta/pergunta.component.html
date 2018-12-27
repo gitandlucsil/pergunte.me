@@ -23,7 +23,7 @@
       <li class="item_post" *ngFor="let p of perguntas">
         <div class="valign z-depth-1 form_login">
           <small>
-            Em {{p.dataPergunta | date: 'dd/MM/yyyy'}} às {{p.dataPergunta | date: 'HH:mm'}} eu perguntei para {{p.remetente.login}}
+            Em {{p.dataPergunta | date: 'dd/MM/yyyy'}} às {{p.dataPergunta | date: 'HH:mm'}} eu perguntei para {{p.destinatario.login}}
           </small>
           <p>
             {{p.descricao}}

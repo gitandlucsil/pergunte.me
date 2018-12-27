@@ -27,14 +27,12 @@ export class PerguntaComponent implements OnInit {
 
   ngOnInit() {
     this.usuario = this.auth.usuario
-    this.listarUsuario()
     this.listar()
   }
 
   listarUsuario(){
     this.http.get(WS_LISTAR_USUARIO, (ret) => {
       this.usuarios = ret
-
     })
   }
 
@@ -42,6 +40,7 @@ export class PerguntaComponent implements OnInit {
     this.http.get(WS_LISTA + "?usuario=" + this.usuario._id, (ret) => {
       this.perguntas = ret
     })
+    this.listarUsuario()
   }
 
   perguntar(){
@@ -49,7 +48,6 @@ export class PerguntaComponent implements OnInit {
     this.pergunta.dataPergunta = new Date()
     this.http.post(WS_SALVAR, this.pergunta, () =>{
       this.pergunta = new Pergunta()
-      this.listarUsuario()
       this.listar()
     })
   }

@@ -42,7 +42,7 @@ exports.listarPerguntaPendenteUsuario = (usuario, fnCallback) => {
     db.connect()
     let q = Pergunta.find({ destinatario : usuario}).find({ resposta : null})
     q.sort('-dataPergunta')
-    q.populate('destinatario')
+    q.populate('remetente')
     q.exec((e, ret) => {
         db.disconnect()
         fnCallback(ret)
@@ -53,7 +53,7 @@ exports.listarPerguntaFeitaUsuario = (usuario, fnCallback) => {
     db.connect()
     let q = Pergunta.find({ remetente : usuario})
     q.sort('-dataPergunta')
-    q.populate('remetente')
+    q.populate('destinatario')
     q.exec((e, ret) => {
         db.disconnect()
         fnCallback(ret)
