@@ -6,13 +6,19 @@
     </div>
   </div>
   <div class="row">
-    <div class="col s3">
+    <form class="col s3" #formRegistro="ngForm">
       <div class="col s12 col_profile">
-        <p style="text-align: center">Foto</p>
-        <p style="text-align: center">Foto</p>
-        <p style="text-align: center">Foto</p>
+        <div class="col s12" style="text-align : center">
+          Imagem de perfil
       </div>
-    </div>
+      <br />
+      <input type="file" name="uploadfile" id="img" style="display:none;" #uploadfile (change)="selecionar($event)" />
+      <label for="img">Carregar imagem</label>
+      <br />
+      <img *ngIf="conteudoImg" [src]='conteudoImg' height="100" width="200" />
+      <br />
+      </div>
+    </form>
     <div class="col s9">
       <div class="row">
         <div class="col s12" style="text-align : left">

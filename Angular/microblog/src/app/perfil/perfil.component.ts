@@ -15,11 +15,13 @@ const WS_ATUALIZAR = 'http://localhost:3000/usuario/atualizar'
 export class PerfilComponent implements OnInit {
 
   usuario : Usuario
+  public conteudoImg
 
   constructor(public auth : AuthService, private http : HttpService, private router : Router) { }
 
   ngOnInit() {
     this.usuario = this.auth.usuario
+    this.conteudoImg = "../pergunte.me/Node/microblog/uploads/mapa.png"
   }
 
   atualizar(){
@@ -33,4 +35,13 @@ export class PerfilComponent implements OnInit {
     this.router.navigateByUrl('/home/inbox')
   }
 
+
+  selecionar($event) {
+    let f = $event.target.files[0]
+    let fr = new FileReader()
+    fr.onloadend = (e) => {
+      this.conteudoImg = fr.result
+    }
+    fr.readAsDataURL(f)
+  }
 }
